@@ -5,8 +5,14 @@ from task_1_graph import edges
 def build_adj_list(elements):
     new_graph = {}
     for u, v, w in elements:
-        new_graph.setdefault(u, []).append(v)
-        new_graph.setdefault(v, []).append(u)
+        if u not in new_graph:
+            new_graph[u] = {}
+        if v not in new_graph:
+            new_graph[v] = {}
+
+        new_graph[u][v] = w  # додати вагу
+        new_graph[v][u] = w
+
     return new_graph
 
 # Рекурсивний DFS
